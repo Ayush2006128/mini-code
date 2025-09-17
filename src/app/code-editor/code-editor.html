@@ -1,0 +1,161 @@
+<div class="code-editor-container" [class.dark-theme]="isDarkTheme" [class.vertical-layout]="isVerticalLayout">
+  
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <button class="toolbar-btn" (click)="runCode()" title="Run Code (Ctrl+Enter)">
+        <span class="icon">▶</span>
+        Run
+      </button>
+      <button class="toolbar-btn" (click)="formatCode()" title="Format Code">
+        <span class="icon">{{ '{' }} {{ '}' }}</span>
+        Format
+      </button>
+    </div>
+    
+    <div class="toolbar-center">
+      <span class="project-name">Untitled Project</span>
+    </div>
+    
+    <div class="toolbar-right">
+      <button class="toolbar-btn" (click)="toggleLayout()" [title]="isVerticalLayout ? 'Switch to Horizontal' : 'Switch to Vertical'">
+        <span class="icon">{{ isVerticalLayout ? '⬌' : '⬍' }}</span>
+        Layout
+      </button>
+      <button class="toolbar-btn" (click)="toggleTheme()" [title]="isDarkTheme ? 'Light Theme' : 'Dark Theme'">
+        <span class="icon">{{ isDarkTheme ? '☀' : '🌙' }}</span>
+        Theme
+      </button>
+      <button class="toolbar-btn" (click)="toggleConsole()" title="Toggle Console (Ctrl+`)">
+        <span class="icon">💬</span>
+        Console
+      </button>
+      <button class="toolbar-btn" (click)="exportCode()" title="Export Code">
+        <span class="icon">📥</span>
+        Export
+      </button>
+      <button class="toolbar-btn" (click)="resetCode()" title="Reset to Default">
+        <span class="icon">🔄</span>
+        Reset
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Editor Layout -->
+  <div class="editor-layout">
+    
+    <!-- Editors Panel -->
+    <div class="editors-panel">
+      
+      <!-- HTML Editor -->
+      <div class="editor-section">
+        <div class="editor-header">
+          <span class="editor-title">
+            <span class="language-icon html-icon">{{ '{' }} {{ '}' }}</span>
+            HTML
+          </span>
+          <div class="editor-actions">
+            <button class="editor-action-btn" (click)="copyCode('html')" title="Copy HTML">
+              📋
+            </button>
+          </div>
+        </div>
+        <div class="editor-wrapper">
+          <div #htmlEditor class="code-editor html-editor"></div>
+        </div>
+      </div>
+
+      <!-- CSS Editor -->
+      <div class="editor-section">
+        <div class="editor-header">
+          <span class="editor-title">
+            <span class="language-icon css-icon">🎨</span>
+            CSS
+          </span>
+          <div class="editor-actions">
+            <button class="editor-action-btn" (click)="copyCode('css')" title="Copy CSS">
+              📋
+            </button>
+          </div>
+        </div>
+        <div class="editor-wrapper">
+          <div #cssEditor class="code-editor css-editor"></div>
+        </div>
+      </div>
+
+      <!-- JavaScript Editor -->
+      <div class="editor-section">
+        <div class="editor-header">
+          <span class="editor-title">
+            <span class="language-icon js-icon">⚡</span>
+            JS
+          </span>
+          <div class="editor-actions">
+            <button class="editor-action-btn" (click)="copyCode('js')" title="Copy JavaScript">
+              📋
+            </button>
+          </div>
+        </div>
+        <div class="editor-wrapper">
+          <div #jsEditor class="code-editor js-editor"></div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Preview Panel -->
+    <div class="preview-panel">
+      <div class="preview-header">
+        <span class="preview-title">
+          <span class="preview-icon">👁</span>
+          Preview
+        </span>
+        <div class="preview-actions">
+          <button class="preview-action-btn" (click)="runCode()" title="Refresh Preview">
+            🔄
+          </button>
+          <button class="preview-action-btn" title="Open in New Tab">
+            🔗
+          </button>
+        </div>
+      </div>
+      <div class="preview-wrapper">
+        <iframe #preview class="preview-frame" 
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                title="Code Preview">
+        </iframe>
+        <div class="preview-loading">
+          <div class="spinner"></div>
+          <span>Loading preview...</span>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <!-- Console Output -->
+  <div class="console-panel" [class.show]="showConsole">
+    <div class="console-header">
+      <span class="console-title">
+        <span class="console-icon">💬</span>
+        Console
+      </span>
+      <button class="console-clear-btn" (click)="clearConsole()">
+        Clear
+      </button>
+    </div>
+    <div class="console-output">
+      <div *ngFor="let message of consoleMessages" 
+           class="console-message"
+           [class]="'console-' + message.type">
+        <span class="console-timestamp">{{ message.timestamp | date:'HH:mm:ss' }}</span>
+        <span class="console-type">[{{ message.type.toUpperCase() }}]</span>
+        <span class="console-text">{{ message.message }}</span>
+      </div>
+      <div *ngIf="consoleMessages.length === 0" class="console-empty">
+        Console output will appear here...
+      </div>
+    </div>
+  </div>
+  
+</div>

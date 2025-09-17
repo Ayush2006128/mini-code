@@ -22,6 +22,12 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ace-builds/src-noconflict",
+                "output": "./assets/ace-builds/"
               }
             ],
             "styles": [
