@@ -22,6 +22,14 @@
   font-size: 1.5rem;
   font-weight: 700;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.app-icon {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .app-subtitle {

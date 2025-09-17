@@ -2,6 +2,11 @@ import { Component, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit } fr
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+// Import Lucide Angular icons
+import { LucideAngularModule, Play, Code2, Palette, Zap, Eye, RotateCcw, Link2, 
+  Copy, Download, MessageSquare, Sun, Moon, Layout, LayoutGrid, 
+  Settings, Terminal, Trash2, Save, FileCode } from 'lucide-angular';
+
 // Import Ace Editor
 import * as ace from 'ace-builds';
 import 'ace-builds/src-noconflict/mode-html';
@@ -13,7 +18,7 @@ import 'ace-builds/src-noconflict/ext-language_tools';
 
 @Component({
   selector: 'app-code-editor',
-  imports: [CommonModule, FormsModule, DatePipe],
+  imports: [CommonModule, FormsModule, DatePipe, LucideAngularModule],
   templateUrl: './code-editor.html',
   styleUrl: './code-editor.css'
 })
@@ -123,6 +128,27 @@ document.addEventListener('DOMContentLoaded', function() {
   // Console logging
   consoleMessages: Array<{type: 'log' | 'error' | 'warn', message: string, timestamp: Date}> = [];
   showConsole = false;
+  
+  // Lucide Icons
+  readonly PlayIcon = Play;
+  readonly Code2Icon = Code2;
+  readonly PaletteIcon = Palette;
+  readonly ZapIcon = Zap;
+  readonly EyeIcon = Eye;
+  readonly RotateCcwIcon = RotateCcw;
+  readonly Link2Icon = Link2;
+  readonly CopyIcon = Copy;
+  readonly DownloadIcon = Download;
+  readonly MessageSquareIcon = MessageSquare;
+  readonly SunIcon = Sun;
+  readonly MoonIcon = Moon;
+  readonly LayoutIcon = Layout;
+  readonly LayoutGridIcon = LayoutGrid;
+  readonly SettingsIcon = Settings;
+  readonly TerminalIcon = Terminal;
+  readonly Trash2Icon = Trash2;
+  readonly SaveIcon = Save;
+  readonly FileCodeIcon = FileCode;
 
   ngOnInit() {
     // Load saved code from localStorage

@@ -4,11 +4,11 @@
   <div class="toolbar">
     <div class="toolbar-left">
       <button class="toolbar-btn" (click)="runCode()" title="Run Code (Ctrl+Enter)">
-        <span class="icon">▶</span>
+        <lucide-angular [img]="PlayIcon" class="icon" size="16"></lucide-angular>
         Run
       </button>
       <button class="toolbar-btn" (click)="formatCode()" title="Format Code">
-        <span class="icon">{{ '{' }} {{ '}' }}</span>
+        <lucide-angular [img]="Code2Icon" class="icon" size="16"></lucide-angular>
         Format
       </button>
     </div>
@@ -19,23 +19,23 @@
     
     <div class="toolbar-right">
       <button class="toolbar-btn" (click)="toggleLayout()" [title]="isVerticalLayout ? 'Switch to Horizontal' : 'Switch to Vertical'">
-        <span class="icon">{{ isVerticalLayout ? '⬌' : '⬍' }}</span>
+        <lucide-angular [img]="isVerticalLayout ? LayoutIcon : LayoutGridIcon" class="icon" size="16"></lucide-angular>
         Layout
       </button>
       <button class="toolbar-btn" (click)="toggleTheme()" [title]="isDarkTheme ? 'Light Theme' : 'Dark Theme'">
-        <span class="icon">{{ isDarkTheme ? '☀' : '🌙' }}</span>
+        <lucide-angular [img]="isDarkTheme ? SunIcon : MoonIcon" class="icon" size="16"></lucide-angular>
         Theme
       </button>
       <button class="toolbar-btn" (click)="toggleConsole()" title="Toggle Console (Ctrl+`)">
-        <span class="icon">💬</span>
+        <lucide-angular [img]="TerminalIcon" class="icon" size="16"></lucide-angular>
         Console
       </button>
       <button class="toolbar-btn" (click)="exportCode()" title="Export Code">
-        <span class="icon">📥</span>
+        <lucide-angular [img]="DownloadIcon" class="icon" size="16"></lucide-angular>
         Export
       </button>
       <button class="toolbar-btn" (click)="resetCode()" title="Reset to Default">
-        <span class="icon">🔄</span>
+        <lucide-angular [img]="RotateCcwIcon" class="icon" size="16"></lucide-angular>
         Reset
       </button>
     </div>
@@ -51,12 +51,12 @@
       <div class="editor-section">
         <div class="editor-header">
           <span class="editor-title">
-            <span class="language-icon html-icon">{{ '{' }} {{ '}' }}</span>
+            <lucide-angular [img]="FileCodeIcon" class="language-icon html-icon" size="16"></lucide-angular>
             HTML
           </span>
           <div class="editor-actions">
             <button class="editor-action-btn" (click)="copyCode('html')" title="Copy HTML">
-              📋
+              <lucide-angular [img]="CopyIcon" size="14"></lucide-angular>
             </button>
           </div>
         </div>
@@ -69,12 +69,12 @@
       <div class="editor-section">
         <div class="editor-header">
           <span class="editor-title">
-            <span class="language-icon css-icon">🎨</span>
+            <lucide-angular [img]="PaletteIcon" class="language-icon css-icon" size="16"></lucide-angular>
             CSS
           </span>
           <div class="editor-actions">
             <button class="editor-action-btn" (click)="copyCode('css')" title="Copy CSS">
-              📋
+              <lucide-angular [img]="CopyIcon" size="14"></lucide-angular>
             </button>
           </div>
         </div>
@@ -87,12 +87,12 @@
       <div class="editor-section">
         <div class="editor-header">
           <span class="editor-title">
-            <span class="language-icon js-icon">⚡</span>
+            <lucide-angular [img]="ZapIcon" class="language-icon js-icon" size="16"></lucide-angular>
             JS
           </span>
           <div class="editor-actions">
             <button class="editor-action-btn" (click)="copyCode('js')" title="Copy JavaScript">
-              📋
+              <lucide-angular [img]="CopyIcon" size="14"></lucide-angular>
             </button>
           </div>
         </div>
@@ -107,15 +107,15 @@
     <div class="preview-panel">
       <div class="preview-header">
         <span class="preview-title">
-          <span class="preview-icon">👁</span>
+          <lucide-angular [img]="EyeIcon" class="preview-icon" size="16"></lucide-angular>
           Preview
         </span>
         <div class="preview-actions">
           <button class="preview-action-btn" (click)="runCode()" title="Refresh Preview">
-            🔄
+            <lucide-angular [img]="RotateCcwIcon" size="14"></lucide-angular>
           </button>
           <button class="preview-action-btn" title="Open in New Tab">
-            🔗
+            <lucide-angular [img]="Link2Icon" size="14"></lucide-angular>
           </button>
         </div>
       </div>
@@ -137,10 +137,11 @@
   <div class="console-panel" [class.show]="showConsole">
     <div class="console-header">
       <span class="console-title">
-        <span class="console-icon">💬</span>
+        <lucide-angular [img]="MessageSquareIcon" class="console-icon" size="12"></lucide-angular>
         Console
       </span>
       <button class="console-clear-btn" (click)="clearConsole()">
+        <lucide-angular [img]="Trash2Icon" size="10"></lucide-angular>
         Clear
       </button>
     </div>

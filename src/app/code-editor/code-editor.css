@@ -97,8 +97,11 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
+.toolbar-btn lucide-angular,
 .toolbar-btn .icon {
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Main Layout */
@@ -188,20 +191,11 @@
 }
 
 .language-icon {
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.html-icon {
-  color: #e34c26;
-}
-
-.css-icon {
-  color: #1572b6;
-}
-
-.js-icon {
-  color: #f7df1e;
-}
 
 .editor-actions {
   display: flex;
@@ -217,6 +211,9 @@
   border-radius: 4px;
   transition: all 0.2s ease;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .editor-action-btn:hover {
@@ -300,8 +297,10 @@
 }
 
 .preview-icon {
-  font-size: 16px;
   color: #4fd1c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .preview-actions {
@@ -318,6 +317,9 @@
   border-radius: 4px;
   transition: all 0.2s ease;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .preview-action-btn:hover {
@@ -419,6 +421,9 @@
   padding: 2px 6px;
   border-radius: 3px;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .console-clear-btn:hover {
@@ -646,6 +651,43 @@
 /* Focus States */
 .code-editor:focus-within {
   box-shadow: inset 0 0 0 2px #4fd1c7;
+}
+
+/* Lucide Icons */
+lucide-angular {
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Ensure proper color inheritance for all buttons */
+.toolbar-btn lucide-angular,
+.editor-action-btn lucide-angular,
+.preview-action-btn lucide-angular {
+  color: inherit;
+}
+
+/* Language-specific icon colors */
+.html-icon {
+  color: #e34c26 !important;
+}
+
+.css-icon {
+  color: #1572b6 !important;
+}
+
+.js-icon {
+  color: #f7df1e !important;
+}
+
+.preview-icon {
+  color: #4fd1c7 !important;
+}
+
+.console-icon {
+  color: inherit;
 }
 
 /* Selection Styles */
