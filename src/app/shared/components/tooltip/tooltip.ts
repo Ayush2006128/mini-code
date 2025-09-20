@@ -153,8 +153,8 @@ export class ZardTooltipComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject<void>();
   readonly elementRef = inject(ElementRef);
 
-  private position = signal<ZardTooltipPositions>('top');
-  private trigger = signal<ZardTooltipTriggers>('hover');
+  protected position = signal<ZardTooltipPositions>('top');
+  protected trigger = signal<ZardTooltipTriggers>('hover');
   protected text = signal<string>('');
 
   state = signal<'closed' | 'opened'>('closed');

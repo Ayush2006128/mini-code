@@ -269,7 +269,7 @@
 
 .preview-header {
   height: 40px;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.562);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
