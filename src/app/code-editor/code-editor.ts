@@ -15,10 +15,12 @@ import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/theme-monokai';
 import 'ace-builds/src-noconflict/theme-github';
 import 'ace-builds/src-noconflict/ext-language_tools';
+import { ZardButtonComponent } from '@shared/components/button/button.component';
 
 @Component({
   selector: 'app-code-editor',
-  imports: [CommonModule, FormsModule, DatePipe, LucideAngularModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule, DatePipe, LucideAngularModule, ZardButtonComponent],
   templateUrl: './code-editor.html',
   styleUrl: './code-editor.css'
 })
