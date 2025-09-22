@@ -51,6 +51,23 @@
   text-align: center;
 }
 
+.project-name-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.project-name-container:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.code-editor-container:not(.dark-theme) .project-name-container:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
 .project-name {
   font-size: 16px;
   font-weight: 600;
@@ -60,6 +77,33 @@
 
 .code-editor-container:not(.dark-theme) .project-name {
   color: #212529;
+}
+
+.edit-name-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-name-btn:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.code-editor-container:not(.dark-theme) .edit-name-btn {
+  color: #212529;
+}
+
+.code-editor-container:not(.dark-theme) .edit-name-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .toolbar-btn {

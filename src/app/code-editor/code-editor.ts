@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit, effect } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 // Import Lucide Angular icons
 import { LucideAngularModule, Play, Code2, Palette, Zap, Eye, RotateCcw, Link2, 
   Copy, Download, MessageSquare, Sun, Moon, Layout, LayoutGrid, 
-  Settings, Terminal, Trash2, Save, FileCode } from 'lucide-angular';
+  Settings, Terminal, Trash2, Save, FileCode, Pencil } from 'lucide-angular';
 
 // Import Ace Editor
 import * as ace from 'ace-builds';
@@ -15,12 +15,13 @@ import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/theme-monokai';
 import 'ace-builds/src-noconflict/theme-github';
 import 'ace-builds/src-noconflict/ext-language_tools';
-import { ZardButtonComponent } from '@shared/components/button/button.component';
+import { ZardDialogService } from '@shared/components/dialog/dialog.service';
+import { ProjectNameEditDialogComponent } from './project-name-edit-dialog.component';
 
 @Component({
   selector: 'app-code-editor',
   standalone: true,
-  imports: [CommonModule, FormsModule, DatePipe, LucideAngularModule, ZardButtonComponent],
+  imports: [CommonModule, FormsModule, DatePipe, LucideAngularModule],
   templateUrl: './code-editor.html',
   styleUrl: './code-editor.css'
 })
@@ -131,6 +132,9 @@ document.addEventListener('DOMContentLoaded', function() {
   consoleMessages: Array<{type: 'log' | 'error' | 'warn', message: string, timestamp: Date}> = [];
   showConsole = false;
   
+  // Project name
+  projectName = 'Untitled Project';
+  
   // Lucide Icons
   readonly PlayIcon = Play;
   readonly Code2Icon = Code2;
@@ -151,6 +155,9 @@ document.addEventListener('DOMContentLoaded', function() {
   readonly Trash2Icon = Trash2;
   readonly SaveIcon = Save;
   readonly FileCodeIcon = FileCode;
+  readonly PencilIcon = Pencil;
+
+  constructor(private dialogService: ZardDialogService) {}
 
   ngOnInit() {
     // Load saved code from localStorage
@@ -376,7 +383,8 @@ document.addEventListener('DOMContentLoaded', function() {
       css: this.cssCode,
       js: this.jsCode,
       theme: this.isDarkTheme,
-      layout: this.isVerticalLayout
+      layout: this.isVerticalLayout,
+      projectName: this.projectName
     };
     localStorage.setItem('minicode-data', JSON.stringify(data));
   }
@@ -391,6 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
         this.jsCode = data.js || this.jsCode;
         this.isDarkTheme = data.theme !== undefined ? data.theme : this.isDarkTheme;
         this.isVerticalLayout = data.layout || this.isVerticalLayout;
+        this.projectName = data.projectName || this.projectName;
       } catch (e) {
         console.warn('Failed to load saved data:', e);
       }
@@ -476,6 +485,23 @@ document.addEventListener('DOMContentLoaded', function() {
       if (this.jsEditor) this.jsEditor.setValue(this.jsCode, -1);
       this.updatePreview();
     }
+  }
+
+  // Edit project name
+  editProjectName() {
+    const dialogRef = this.dialogService.open(ProjectNameEditDialogComponent, {
+      data: { projectName: this.projectName }
+    });
+
+    // Use effect to watch for the result
+    const cleanup = effect(() => {
+      const result = dialogRef.afterClosed()() as { projectName?: string } | undefined;
+      if (result && result.projectName && result.projectName.trim()) {
+        this.projectName = result.projectName.trim();
+        this.saveToStorage();
+        cleanup.destroy(); // Clean up the effect once we get a result
+      }
+    });
   }
   
   private loadDefaultCode() {

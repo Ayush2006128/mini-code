@@ -14,7 +14,12 @@
     </div>
     
     <div class="toolbar-center">
-      <span class="project-name">Untitled Project</span>
+      <div class="project-name-container">
+        <span class="project-name">{{ projectName }}</span>
+        <button class="edit-name-btn" (click)="editProjectName()" title="Edit Project Name">
+          <lucide-angular [img]="PencilIcon" class="icon" size="14"></lucide-angular>
+        </button>
+      </div>
     </div>
     
     <div class="toolbar-right">
