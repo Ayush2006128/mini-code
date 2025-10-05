@@ -1,4 +1,5 @@
 import { signal } from '@angular/core';
+import { OverlayRef } from '@angular/cdk/overlay';
 
 export interface ZardDialogConfig {
   size?: 'sm' | 'md' | 'lg' | 'xl';
@@ -11,7 +12,8 @@ export class ZardDialogRef<T = unknown, R = unknown> {
 
   constructor(
     public readonly component: T,
-    public readonly config?: ZardDialogConfig
+    public readonly config?: ZardDialogConfig,
+    private readonly overlayRef?: OverlayRef
   ) {}
 
   afterClosed() {
@@ -20,5 +22,8 @@ export class ZardDialogRef<T = unknown, R = unknown> {
 
   close(result?: R) {
     this._afterClosed.set(result);
+    if (this.overlayRef) {
+      this.overlayRef.dispose();
+    }
   }
 }

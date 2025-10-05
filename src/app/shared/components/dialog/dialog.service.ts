@@ -12,8 +12,8 @@ export class ZardDialogService {
   private readonly injector = inject(Injector);
 
   open<T, R = unknown>(component: any, config?: ZardDialogConfig): ZardDialogRef<T, R> {
-    const dialogRef = new ZardDialogRef<T, R>(component, config);
     const overlayRef = this.createOverlay(config);
+    const dialogRef = new ZardDialogRef<T, R>(component, config, overlayRef);
     const portal = new ComponentPortal(component, null, this.createInjector(dialogRef));
     
     overlayRef.attach(portal);
